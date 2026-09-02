@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #07090c;
+  --color-panel: #0c1016;
+  --color-panel-2: #11161e;
+  --color-ink: #e8edf2;
+  --color-mute: #8b98a5;
+  --color-dim: #5c6a76;
+  --color-line: #1a222c;
+  --color-cyan: #22d3ee;
+  --color-cyan-dim: #0e7490;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01" on, "kern" on;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-cyan) 35%, transparent);
+  color: #f8feff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+}
+
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center top;
+}
+
+.grid-fade {
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 35%, transparent 80%);
+}
+
+.glow-cyan {
+  background: radial-gradient(ellipse 60% 50% at 70% 0%, rgba(34, 211, 238, 0.09), transparent 62%);
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal="delay"] {
+  transition-delay: 0.08s;
+}
+
+[data-reveal="delay-2"] {
+  transition-delay: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card-motion {
+    transition: none !important;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-panel) 80%, transparent);
+  color: var(--color-ink);
+  font-size: 0.8125rem;
+  letter-spacing: 0.01em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+}
+
+.chip:hover {
+  border-color: color-mix(in srgb, var(--color-cyan) 45%, var(--color-line));
+  color: var(--color-cyan);
+}
+
+.kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
